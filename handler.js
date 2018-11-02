@@ -1,14 +1,24 @@
 'use strict';
 
-module.exports.hello = async (event, context) => {
-  return {
+
+module.exports.getWord = async (event, context, callback) => {
+
+  // Get random word
+  const words = require('./utils/words');
+  const word = words.generateWord();
+
+  const response = {
     statusCode: 200,
+    // This header required for CORS 
+    // Set it to hangman.sumarap.com to ONLY allow access from their
+    headers: {
+      'Access-Control-Allow-Origin': '*'
+    },
     body: JSON.stringify({
-      message: 'Go Serverless v1.0! Your function executed successfully!',
-      input: event,
+      word: word
     }),
   };
 
-  // Use this code if you don't use the http event with the LAMBDA-PROXY integration
-  // return { message: 'Go Serverless v1.0! Your function executed successfully!', event };
+  callback(null, response);
+
 };
