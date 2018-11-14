@@ -1,5 +1,10 @@
 ## Instructions for creating a serverless app for AWS Lambda (18-11-01)
 
+1. Install serverless framework. You can install it globally and not have to deal with it again.
+   npm install -g serverless
+1. Setup the credentials for serverless framework (this is also globally, not per project)
+   sls config credentials --provider aws --key kdfjsldad --secret dkghslalb --profile aws-user-name
+
 1. Create project folder
 1. cd to folder
 1. Create nodejs project
