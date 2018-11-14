@@ -1,4 +1,4 @@
-# Instructions for creating a serverless app for AWS Lambda (18-11-01)
+## Instructions for creating a serverless app for AWS Lambda (18-11-01)
 
 1. Create project folder
 1. cd to folder
