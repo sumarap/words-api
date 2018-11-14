@@ -37,4 +37,7 @@
    - Just below the service entry in serverless.yml, I put the plugins section:
    - plugins:
      - serverless-offline
-1. Instead of using express to create routes in a node js app, we can use AWS
+1. Instead of using express to create routes in a node js app, we can use AWS. In the yaml (serverless.yml), we can define routes, under the events section (path and method).
+1. Now we can run serverless offline, and test it before deploying to AWS. We can use Postman to test our changes locally. Setup a server locally:
+   - sls offline
+   - Test different routes with Postman.
