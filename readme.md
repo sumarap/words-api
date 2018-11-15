@@ -41,3 +41,10 @@
 1. Now we can run serverless offline, and test it before deploying to AWS. We can use Postman to test our changes locally. Setup a server locally:
    - sls offline
    - Test different routes with Postman.
+1. Create DynamoDB database (table name and fields including id field (string))
+1. Modify serverless.yml file to include dynamoDB info.
+   1. Add environment variable to store the table name (ENVIRONMENT: DYNAMODB_TABLE: word-puzzle)
+   1. Add iamrolestatements,
+      1. effect: "Allow",
+      1. Action: dynamodb:Query, Scan, GetItem, PutItem, UpdateItem, DeleteItem (just Query, Scan and Get Item I think for this)
+      1. Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self.provider.environment.DYNAMODB_TABLE}"
