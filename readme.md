@@ -10,7 +10,7 @@
 1. Create nodejs project
    1. npm init -y
 1. Create serverless project
-   - sls -t aws-nodejs
+   - sls create -t aws-nodejs
 1. Create git project
    - git init
 1. Modify serverless.yml
