@@ -48,3 +48,7 @@
       1. effect: "Allow",
       1. Action: dynamodb:Query, Scan, GetItem, PutItem, UpdateItem, DeleteItem (just Query, Scan and Get Item I think for this)
       1. Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self.provider.environment.DYNAMODB_TABLE}"
+1. To view logs of our AWS function running:
+   1. sls logs -f functionName -s stageName --startTime 10min
+   1. sls logs -f hello -s dev --startTime 15min
+   1. sls logs -f functionName -s stageName --tail
