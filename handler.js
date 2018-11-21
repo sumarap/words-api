@@ -1,6 +1,10 @@
 'use strict'
 
 module.exports.getWord = async (event, context, callback) => {
+  const {
+    createWordsArray
+  } = require('./utils/functions')
+
   // Retrieve words module for getting words from the database
   const words = require('./utils/words')
 
@@ -28,11 +32,14 @@ module.exports.getWord = async (event, context, callback) => {
     wordSubject = 'all'
   }
 
+  // Create the word array (all, computer, biology, chemistry, physics)
+  let wordsArray = createWordsArray(wordSubject)
+
   // Get the words requested and push into the words array
   for (let i = 0; i < wordCount; i++) {
     // Get random word
-    let word = words.generateWord()
-    // TODO: Sub-loop so we only add this word to the array if it's not already there
+    let word = words.generateWord(wordsArray)
+    // TODO?: Sub-loop so we only add this word to the array if it's not already there
     wordArr.push(word)
   }
 
