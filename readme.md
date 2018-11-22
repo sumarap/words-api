@@ -1,3 +1,9 @@
+## words-api generates words
+
+1. Query string values:
+   1. wordCount(): Number of words to be returned;
+   1. wordSubject: word 'subjects' to be returned. Values can be: biology, chemistry, physics, computer, or all
+
 ## Instructions for creating a serverless app for AWS Lambda (18-11-01)
 
 1. Install serverless framework. You can install it globally and not have to deal with it again.
