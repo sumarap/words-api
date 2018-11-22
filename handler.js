@@ -1,6 +1,11 @@
 'use strict'
 
 module.exports.getWord = async (event, context, callback) => {
+
+  const MAX_WORDS = 5 // Maximum number of words returned
+  const DEFAULT_WORDS = 1 // If no query param for words returned default to 1
+  const DEFAULT_SUBJECT = 'all' // If no query param for subject, return 'all'
+
   const {
     createWordsArray, // Creates the master list of words we'll pick from
     generateWord // Picks a word at random from the list created (above)
@@ -11,25 +16,29 @@ module.exports.getWord = async (event, context, callback) => {
   let wordSubject // Requested word subject/topic
 
   // Check if the wordCount query parameter was passed
-  // If not default to 1
+  // If not, then set wordCount to DEFAULT_WORDS
   if (
     event.queryStringParameters &&
     event.queryStringParameters.hasOwnProperty('wordCount')
   ) {
     wordCount = event.queryStringParameters.wordCount
+
+    // Limit the number of words returned to MAX_WORDS
+    if (wordCount > MAX_WORDS) {
+      wordCount = MAX_WORDS
+    }
   } else {
-    wordCount = 1
+    wordCount = DEFAULT_WORDS
   }
 
   // Check if the wordSubject query parameter was passed
-  // if not default to 'all'
   if (
     event.queryStringParameters &&
     event.queryStringParameters.hasOwnProperty('wordSubject')
   ) {
     wordSubject = event.queryStringParameters.wordSubject
   } else {
-    wordSubject = 'all'
+    wordSubject = DEFAULT_SUBJECT
   }
 
   // Create the word array (all, computer, biology, chemistry, physics)
