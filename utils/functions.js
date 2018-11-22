@@ -1,4 +1,10 @@
-function createWordsArray(wordSubject) {
+//////////////////////////////////////////////////////////////////////////////
+// Create a master word array from which we'll choose a number of words
+// to include in our response. If the user has selected a subject
+// we'll include only words in that subject's array (biology, chemistry, etc)
+// Otherwise we'll include ALL words
+//////////////////////////////////////////////////////////////////////////////
+const createWordsArray = (wordSubject) => {
 
   const words_computer = require('./words-computer.js')
   const words_biology = require('./words-biology.js')
@@ -7,7 +13,6 @@ function createWordsArray(wordSubject) {
   let words = []
 
   wordSubject = wordSubject.toLowerCase()
-  console.log('wordSubject:', wordSubject)
   switch (wordSubject) {
     case 'computer':
       words = words.concat(words_computer)
@@ -30,10 +35,28 @@ function createWordsArray(wordSubject) {
       break
   }
 
-  console.log('function.js/createWordsArray/words:', words)
   return words
 }
 
+///////////////////////////////////////////////////////////
+// TODO: Add support for npm "unique-random" instead of
+//       using Math.random()
+// TODO: Add support for accessing a dynamodb
+///////////////////////////////////////////////////////////
+const generateWord = (wordsArray) => {
+
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+  }
+
+  // Get random index value
+  const index = getRandomInt(wordsArray.length - 1);
+
+  return wordsArray[index];
+}
+
+///////////////////////////////////////////////////////////
 module.exports = {
-  createWordsArray: createWordsArray
+  createWordsArray: createWordsArray,
+  generateWord: generateWord
 }
